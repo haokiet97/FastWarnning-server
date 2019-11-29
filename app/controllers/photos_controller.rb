@@ -1,11 +1,12 @@
 class PhotosController < ApplicationController
+  before_action :authenticate_user!, except: %i(create)
   before_action :get_camera, only: %i(new create)
-  before_action :set_photo, only: [:show, :edit, :update, :destroy]
+  before_action :set_photo, :valid_user, only: [:show, :edit, :update, :destroy]
 
   # GET /photos
   # GET /photos.json
   def index
-    @photos = Photo.all
+    @photos = current_user.photos
   end
 
   # GET /photos/1
@@ -80,5 +81,11 @@ class PhotosController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def photo_params
     params.require(:photo).permit :title, :image
+  end
+
+  def valid_user
+    return if current_user.photos.include? @photo
+    flash[:danger] = "You don't have permissions!"
+    redirect_to root_path
   end
 end
