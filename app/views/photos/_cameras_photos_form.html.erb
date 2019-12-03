@@ -1,0 +1,19 @@
+<%= form_for( :photo, url: camera_photos_path(camera), local: true) do |form| %>
+  <% if photo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(photo.errors.count, "error") %> prohibited this photo from being saved:</h2>
+
+      <ul>
+      <% photo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.text_field :title, class: "form-control" %>
+  <%= form.file_field :image, class: "form-control" %>
+  <div class="actions">
+    <%= form.submit "Submit", class: "btn btn-primary"%>
+  </div>
+<% end %>

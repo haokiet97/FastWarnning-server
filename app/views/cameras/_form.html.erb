@@ -1,0 +1,18 @@
+<%= form_with(model: camera, local: true) do |form| %>
+  <% if camera.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(camera.errors.count, "error") %> prohibited this camera from being saved:</h2>
+
+      <ul>
+      <% camera.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form.text_field :title, html_options = {"placeholder": "Title"}%>
+  <%= form.text_field :info, html_options = {"placeholder": "Info"}%>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

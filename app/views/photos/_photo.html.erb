@@ -1,0 +1,12 @@
+<div class="col-md-3">
+  <%= link_to url = photo.image.url do %>
+    <div class="image">
+      <%= image_tag photo.image.mini.url %>
+    </div>
+  <% end %>
+  <div class="title">
+    <p><%= photo.title %></p>
+    <p><%= photo.created_at.to_s %></p>
+  </div>
+</div>
+
