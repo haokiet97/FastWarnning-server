@@ -1,11 +1,11 @@
 class CamerasController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_camera, except: %i(index new create)
+  before_action :set_camera, :valid_camera, except: %i(index new create)
 
   # GET /cameras
   # GET /cameras.json
   def index
-    @cameras = Camera.all
+    @cameras = current_user.cameras
   end
 
   # GET /cameras/1
@@ -63,13 +63,18 @@ class CamerasController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_camera
-      @camera = Camera.find_by(id: params[:id]) || Camera.find_by(token: params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def camera_params
-      params.require(:camera).permit :title, :info
-    end
+  def set_camera
+    @camera = Camera.find_by(id: params[:id]) || Camera.find_by(token: params[:id])
+  end
+
+  def camera_params
+    params.require(:camera).permit :title, :info
+  end
+
+  def valid_camera
+    return if @camera.user == current_user
+    flash[:danger] = "You don't have permission!"
+    redirect_to root_path
+  end
 end

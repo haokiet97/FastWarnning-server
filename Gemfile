@@ -28,13 +28,15 @@ gem "jbuilder", "~> 2.5"
 # gem "bcrypt", "~> 3.1.7"
 
 # Use ActiveStorage variant
-# gem "mini_magick", "~> 4.8"
+gem "mini_magick", "~> 4.8"
 
 # Use Capistrano for deployment
 # gem "capistrano-rails", group: :development
 
+gem "rails-i18n"
 gem "rails-ujs"
 gem "carrierwave"
+gem "carrierwave-base64"
 gem "devise"
 gem "jquery-rails"
 gem "jquery-ui-rails"
@@ -42,6 +44,8 @@ gem "bootstrap-sass"
 gem "bootstrap3-rails", "~> 3.2"
 gem "jquery-datatables"
 gem "pundit"
+gem "bootstrap-growl-rails"
+gem "redis"
 
 
 # Reduces boot times through caching; required in config/boot.rb

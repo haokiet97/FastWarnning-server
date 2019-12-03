@@ -1,4 +1,17 @@
-<p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_camera_path(@camera) %> |
-<%= link_to 'Back', cameras_path %>
+<div class="row">
+  <p id="notice"><%= notice %></p>
+  <ul>
+    <li><%= @camera.title %></li>
+    <li><%= @camera.info %></li>
+    <p><strong><%= @camera.token %></strong></p>
+  </ul>
+  <%= link_to 'Edit', edit_camera_path(@camera) %> |
+  <%= link_to 'Back', cameras_path %>
+</div>
+<div class="row">
+  <div class="col-md-offset-4"><h3>List Photos</h3></div>
+</div>
+<br>
+<div class="row">
+  <%= render @camera.photos.latest %>
+</div>

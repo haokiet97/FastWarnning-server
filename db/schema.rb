@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_28_135928) do
+ActiveRecord::Schema.define(version: 2019_12_02_081838) do
 
   create_table "cameras", force: :cascade do |t|
     t.string "title"
@@ -20,6 +20,17 @@ ActiveRecord::Schema.define(version: 2019_11_28_135928) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_cameras_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "notifiable_type"
+    t.integer "notifiable_id"
+    t.string "notice"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "read", default: false
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "photos", force: :cascade do |t|

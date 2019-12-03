@@ -17,4 +17,5 @@
 //= require bootstrap
 //= require jquery-ui
 //= require datatables
+//= require bootstrap-notify
 //= require_tree .

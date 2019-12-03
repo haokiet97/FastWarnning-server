@@ -9,4 +9,5 @@ class User < ApplicationRecord
 
   has_many :cameras
   has_many :photos, through: :cameras
+  has_many :notifications, dependent: :destroy
 end

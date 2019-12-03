@@ -3,10 +3,12 @@ class PhotosController < ApplicationController
   before_action :get_camera, only: %i(new create)
   before_action :set_photo, :valid_user, only: [:show, :edit, :update, :destroy]
 
+  protect_from_forgery except: %i(create)
+
   # GET /photos
   # GET /photos.json
   def index
-    @photos = current_user.photos
+    @photos = current_user.photos.latest
   end
 
   # GET /photos/1
@@ -31,7 +33,7 @@ class PhotosController < ApplicationController
     respond_to do |format|
       if @photo.save
         format.html { redirect_to @photo, notice: 'Photo was successfully created.' }
-        format.json { render :show, status: :created, location: @photo }
+        format.json { render status: :accepted }
       else
         format.html { render :new }
         format.json { render json: @photo.errors, status: :unprocessable_entity }

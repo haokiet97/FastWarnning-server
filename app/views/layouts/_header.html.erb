@@ -40,6 +40,7 @@
           <li><%= link_to "Sign in", new_user_session_path %></li>
         <% end %>
       </ul>
+      <%= render partial: "shared/notifications", locals: { notifications: current_user.notifications.latest } if user_signed_in? %>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
