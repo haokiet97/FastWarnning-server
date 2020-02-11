@@ -1,8 +1,9 @@
 class Photo < ApplicationRecord
-  belongs_to :camera
+  include ActiveStorageSupport::SupportForBase64
 
+  has_one_base64_attached :image
+  belongs_to :camera
   has_one :notification, as: :notifiable, dependent: :destroy
-  mount_base64_uploader :image, ImageUploader
 
   scope :latest, ->{ order created_at: :desc }
 
