@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @video.title %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+</p>
+
+<%= video_tag rails_blob_path(@video.data), controls: true, content_type: "video/mp4" %>
+
+<video controls autoplay >
+  <source src="<%= rails_blob_path(@video.data) %>" type="video/mp4">
+</video>
+
+<p>
+  <strong>Description:</strong>
+  <%= @video.description %>
+</p>
+
+<%= link_to 'Edit', edit_video_path(@video) %> |
+<%= link_to 'Back', videos_path %>

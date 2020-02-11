@@ -1,7 +1,7 @@
 class PhotosController < ApplicationController
   before_action :authenticate_user!, except: %i(create)
   before_action :get_camera, only: %i(new create)
-  before_action :set_photo, :valid_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_photo, :valid_user, only: %i(show edit update destroy)
 
   protect_from_forgery except: %i(create)
 
@@ -29,7 +29,7 @@ class PhotosController < ApplicationController
   # POST /photos.json
   def create
     @photo = @camera.photos.build photo_params
-
+    @photo.image = { data: params[:photo][:image] }
     respond_to do |format|
       if @photo.save
         format.html { redirect_to @photo, notice: 'Photo was successfully created.' }
@@ -70,19 +70,23 @@ class PhotosController < ApplicationController
   def get_camera
     @camera = Camera.find_by(id: params[:camera_id]) || Camera.find_by(token: params[:camera_id])
     return if @camera
-    respond_to do |format |
-      format.html { redirect_to root_path}
+    respond_to do |format|
+      format.html { redirect_to root_path }
       format.json { render status: :unprocessable_entity }
     end
   end
 
   def set_photo
-    @photo = Photo.find(params[:id])
+    @photo = Photo.find_by id: params[:id]
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def photo_params
-    params.require(:photo).permit :title, :image
+    params.require(:photo).permit :title
+  end
+
+  def image_params
+    params.require(:photo).permit :image
   end
 
   def valid_user

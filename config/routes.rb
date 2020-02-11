@@ -3,12 +3,16 @@ Rails.application.routes.draw do
   root to: "static_pages#index"
   resources :cameras do
     resources :photos
+    resources :videos
   end
-  resources :photos
 
-  scope :api do
-    resources :cameras do
+  resources :photos
+  resources :videos
+
+  namespace :api  do
+    resources :cameras, only: %i() do
       resources :photos, only: %i(create)
+      resources :videos, only: %i(create)
     end
   end
 end
