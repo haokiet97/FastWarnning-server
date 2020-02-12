@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :photos
   resources :videos
+  resource :users, only: %i(show), as:  "profile"
 
   namespace :api  do
     resources :cameras, only: %i() do

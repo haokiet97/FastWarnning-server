@@ -13,5 +13,7 @@
 </table>
 
 <br>
-
-<%= link_to 'New Video', new_video_path %>
+<div id="videos">
+  <%= render partial: "videos", locals: { videos:@videos, camera: @camera } %>
+</div>
+<%= link_to 'New Video', new_video_path, class: "btn btn-primary" %>

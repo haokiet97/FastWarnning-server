@@ -1,0 +1,11 @@
+<div class="row">
+  <%= render photos %>
+</div>
+<div class="row" id="video-paginate">
+  <p><%= page_entries_info photos, entry_name: "photo" %></p>
+  <% if camera %>
+    <%= paginate photos, theme: "twitter-bootstrap-3", remote: true, params: {controller: "photos", action: "index", camera_id: camera.id} %>
+  <% else %>
+    <%= paginate photos, theme: "twitter-bootstrap-3", remote: true %>
+  <% end %>
+</div>

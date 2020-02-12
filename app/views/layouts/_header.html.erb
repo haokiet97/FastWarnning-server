@@ -26,9 +26,12 @@
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.name %> <span class="caret"></span></a>
+            <%= link_to edit_user_registration_path, html_options = {class:"dropdown-toggle", "data-toggle": "dropdown", role: "button", "aria-haspopup": "true", "aria-expanded": "false"}  do %>
+              <%= current_user.name || current_user.email %>
+              <span class="caret"></span>
+            <% end %>
             <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
+              <li><%= link_to current_user.name || current_user.email, edit_user_registration_path %></li>
               <li><a href="#">Another action</a></li>
               <li><a href="#">Something else here</a></li>
               <li role="separator" class="divider"></li>
@@ -41,6 +44,6 @@
         <% end %>
       </ul>
       <%= render partial: "shared/notifications", locals: { notifications: current_user.notifications.latest } if user_signed_in? %>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+    </div>
+  </div>
 </nav>

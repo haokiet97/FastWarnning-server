@@ -14,4 +14,8 @@
 
 <br>
 
+<div id="photos">
+  <%= render partial: "photos", locals: { photos: @photos, camera: @camera } %>
+</div>
+
 <%= link_to 'New Photo', new_photo_path %>

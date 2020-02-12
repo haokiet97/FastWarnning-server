@@ -1,14 +1,26 @@
 class VideosController < ApplicationController
-  before_action :authenticate_user!, except: %i(create)
+  before_action :authenticate_user!
   before_action :get_camera, only: %i(new)
-  before_action :set_video, :valid_user, only: %i(show edit update destroy)
+  before_action :set_video, :valid_user, only: %i(show edit edit update destroy)
 
   # after_action :attach_data, only: %i(create)
 
   # GET /videos
   # GET /videos.json
   def index
-    @videos = current_user.videos.latest
+    @camera = Camera.find_by(id: params[:camera_id])
+    unless @camera
+      @videos = current_user.videos.latest.page(params[:page]).per 6
+    else
+      unless current_user.cameras.include? @camera
+        flash[:danger] = "You don't have permissions!"
+        redirect_to cameras_path
+      else
+        @videos = @camera.videos.latest.page(params[:page]).per 6
+      end
+    end
+
+
   end
 
   # GET /videos/1
