@@ -34,6 +34,8 @@ gem "redis"
 gem "activestorage"
 gem "active_storage_base64"
 gem "streamio-ffmpeg"
+gem "kaminari"
+gem "bootstrap-kaminari-views"
 
 gem "bootsnap", ">= 1.1.0", require: false
 

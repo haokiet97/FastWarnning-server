@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>FastWarning</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>FastWarning</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-  <%= render partial: "layouts/header" %>
-  <div class="body">
-    <% flash.each do |type, message| %>
-      <div class="alert alert-<%= type %>"><%= message %></div>
-    <% end %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-  </div>
+<body>
+<%= render partial: "layouts/header" %>
+<div class="body">
+  <% flash.each do |type, message| %>
+    <div class="alert alert-<%= type %>"><%= message %></div>
+  <% end %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+</div>
+<div class="container-md">
   <%= yield %>
-  </body>
+</div>
+</body>
 </html>
