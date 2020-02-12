@@ -80,5 +80,6 @@ node_modules/
 /config/master.key
 
 /.idea/*
+/.idea/.generators
 /public/uploads/
 /test/*

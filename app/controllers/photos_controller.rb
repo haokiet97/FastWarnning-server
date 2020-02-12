@@ -8,7 +8,17 @@ class PhotosController < ApplicationController
   # GET /photos
   # GET /photos.json
   def index
-    @photos = current_user.photos.latest
+    @camera = Camera.find_by(id: params[:camera_id])
+    unless @camera
+      @photos = current_user.photos.latest.page(params[:page]).per 6
+    else
+      unless current_user.cameras.include? @camera
+        flash[:danger] = "You don't have permissions!"
+        redirect_to cameras_path
+      else
+        @photos = @camera.photos.latest.page(params[:page]).per 6
+      end
+    end
   end
 
   # GET /photos/1
@@ -29,7 +39,7 @@ class PhotosController < ApplicationController
   # POST /photos.json
   def create
     @photo = @camera.photos.build photo_params
-    @photo.image = { data: params[:photo][:image] }
+    @photo.image = {data: params[:photo][:image]}
     respond_to do |format|
       if @photo.save
         format.html { redirect_to @photo, notice: 'Photo was successfully created.' }

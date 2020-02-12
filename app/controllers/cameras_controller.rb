@@ -1,11 +1,12 @@
 class CamerasController < ApplicationController
   before_action :authenticate_user!
   before_action :set_camera, :valid_camera, except: %i(index new create)
+  before_action :get_photos, :get_videos, only: %i(show)
 
   # GET /cameras
   # GET /cameras.json
   def index
-    @cameras = current_user.cameras
+    @cameras = current_user.cameras.latest.page(params[:page]).per 6
   end
 
   # GET /cameras/1
@@ -75,6 +76,14 @@ class CamerasController < ApplicationController
   def valid_camera
     return if @camera.user == current_user
     flash[:danger] = "You don't have permission!"
-    redirect_to root_path
+    redirect_to videos_path
+  end
+
+  def get_photos
+    @photos = @camera.photos.latest.page(params[:page]).per 6 if @camera
+  end
+
+  def get_videos
+    @videos = @camera.videos.latest.page(params[:page]).per 6 if @camera
   end
 end

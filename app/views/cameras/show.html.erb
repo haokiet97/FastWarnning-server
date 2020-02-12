@@ -9,9 +9,17 @@
   <%= link_to 'Back', cameras_path %>
 </div>
 <div class="row">
-  <div class="col-md-offset-4"><h3>List Photos</h3></div>
+  <div class="col-md-offset-4"><h3>List Videos</h3></div>
+</div>
+<br>
+<div class="row" id="videos">
+  <%= render partial: "videos/videos", locals: { videos: @videos, camera: @camera } %>
 </div>
 <br>
 <div class="row">
-  <%= render @camera.photos.latest %>
+  <div class="col-md-offset-4"><h3>List Photos</h3></div>
+</div>
+<br>
+<div class="row" id="photos">
+  <%= render partial: "photos/photos", locals: { photos: @photos, camera: @camera } %>
 </div>
