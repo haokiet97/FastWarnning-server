@@ -2,14 +2,14 @@
   <section>
 
     <h1>Welcome! You&rsquo;re on FastWarning system dev by Giap!</h1>
-    <div class="welcome-image">
-      <%= image_tag src='main.jpg', html_options={ alt: 'welcome image' } %>
-    </div>
+<!--    <div class="welcome-image">-->
+      <%#= image_tag src='main.jpg', html_options={ alt: 'welcome image' } %>
+<!--    </div>-->
 
     <div class="row">
       <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
-          <img src="..." alt="...">
+          <%= image_tag src='building.png', html_options={class: 'menu-index-item'} %>
           <div class="caption">
             <h3>Building</h3>
             <p>...</p>
@@ -19,9 +19,9 @@
       </div>
       <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
-          <img src="..." alt="...">
+          <%=  image_tag src='cameras.png', html_options={class: 'menu-index-item'} %>
           <div class="caption">
-            <h3>Thumbnail label</h3>
+            <h3>Cameras</h3>
             <p>...</p>
             <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
           </div>
@@ -29,9 +29,9 @@
       </div>
       <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
-          <img src="..." alt="...">
+          <%= image_tag src="videos.png", html_options={class: 'menu-index-item'} %>
           <div class="caption">
-            <h3>Thumbnail label</h3>
+            <h3>Videos</h3>
             <p>...</p>
             <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
           </div>
@@ -41,9 +41,9 @@
     <div class="row">
       <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
-          <img src="..." alt="...">
+          <%= image_tag src='users.png', html_options={class: 'menu-index-item'} %>
           <div class="caption">
-            <h3>Thumbnail label</h3>
+            <h3>User</h3>
             <p>...</p>
             <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
           </div>

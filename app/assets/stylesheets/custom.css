@@ -19,3 +19,7 @@
     max-width: 600px;
     max-height: 600px;
 }
+.menu-index-item {
+    max-height: 300px;
+    min-height: 300px;
+}
