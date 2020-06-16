@@ -1,18 +1,19 @@
 <h1>Videos</h1>
 
-<table class="responsive nowrap table table-hover" id="dttb-videos" data-sort="true" data-source="<%= url_for(format: :json)%>">
-  <thead>
-    <tr>
-      <th data-data="title">Title</th>
-      <th data-data="description">Description</th>
-      <th data-data="created_at">Created at</th>
-      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px">Actions</th>
-    </tr>
-  </thead>
-
-</table>
-
-<br>
+<%= search_form_for @q do |f| %>
+  <div class="row">
+    <div class="col-md-offset-8 col-md-3">
+      <div class="input-daterange input-group" id="datepicker">
+        <span class="input-group-addon">from</span>
+        <%= f.text_field :created_at_gteq, html_options={class: "input-sm form-control"}%>
+        <span class="input-group-addon">to</span>
+        <%= f.text_field :created_at_lteq,  html_options={class: "input-sm form-control"} %>
+      </div>
+    </div>
+    <%= f.submit "Search", html_options={class: " btn input-sm"} %>
+  </div>
+<% end %>
+<hr>
 <div id="videos">
   <%= render partial: "videos", locals: { videos:@videos, camera: @camera } %>
 </div>
