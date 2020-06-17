@@ -36,7 +36,10 @@ gem "active_storage_base64"
 gem "streamio-ffmpeg"
 gem "kaminari"
 gem "bootstrap-kaminari-views"
-
+gem "ransack", github: "activerecord-hackery/ransack"
+#datetimepicker
+gem "momentjs-rails"
+gem "bootstrap3-datetimepicker-rails"
 gem "bootsnap", ">= 1.1.0", require: false
 
 group :development, :test do

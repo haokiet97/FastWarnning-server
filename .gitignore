@@ -79,7 +79,9 @@ node_modules/
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-/.idea/*
+/.idea/
 /.idea/.generators
 /public/uploads/
 /test/*
+.idea/misc.xml
+.idea/modules.xml

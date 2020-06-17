@@ -18,4 +18,6 @@
 //= require jquery-ui
 //= require datatables
 //= require bootstrap-notify
+//= require moment
+//= require bootstrap-datetimepicker
 //= require_tree .

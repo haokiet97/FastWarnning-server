@@ -10,13 +10,15 @@ class VideosController < ApplicationController
   def index
     @camera = Camera.find_by(id: params[:camera_id])
     unless @camera
-      @videos = current_user.videos.latest.page(params[:page]).per 6
+      @q = current_user.videos.ransack params[:q]
+      @videos = @q.result.latest.page(params[:page]).per 6
     else
-      unless current_user.cameras.include? @camera
+      unless @camera.user == current_user
         flash[:danger] = "You don't have permissions!"
         redirect_to cameras_path
       else
-        @videos = @camera.videos.latest.page(params[:page]).per 6
+        @q = @camera.videos.ransack params[:q]
+        @videos = @q.result.latest.page(params[:page]).per 6
       end
     end
 
