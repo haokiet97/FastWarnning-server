@@ -1,0 +1,9 @@
+<div class="thumbnail">
+  <%= link_to location_path(location) do %>
+    <%= image_tag src = 'building.png', html_options = {class: 'menu-index-item'} %>
+  <% end %>
+  <div class="caption">
+    <h3><%= location.locate %></h3>
+    <p><%= location.description %></p>
+  </div>
+</div>

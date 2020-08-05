@@ -5,6 +5,7 @@ class Camera < ApplicationRecord
   validates :info, length: {maximum: 255}
 
   belongs_to :user
+  belongs_to :location
   has_many :photos, dependent: :destroy
   has_many :videos, dependent: :destroy
 

@@ -1,37 +1,37 @@
 <div class="container">
   <section>
-
-    <h1>Welcome! You&rsquo;re on FastWarning system dev by Giap!</h1>
-    <br>
     <% if user_signed_in? %>
       <div class="row">
         <div class="col-sm-6 col-md-4">
           <div class="thumbnail">
-            <%= image_tag src='building.png', html_options={class: 'menu-index-item'} %>
+            <%= link_to locations_path do %>
+              <%= image_tag src = 'building.png', html_options = {class: 'menu-index-item'} %>
+            <% end %>
             <div class="caption">
-              <h3>Building</h3>
-              <p>...</p>
-              <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+              <h3>Địa điểm</h3>
+              <p>Quản lý địa điểm và các thông tin liên quan</p>
             </div>
           </div>
         </div>
         <div class="col-sm-6 col-md-4">
           <div class="thumbnail">
+            <%= link_to cameras_path do %>
             <%=  image_tag src='cameras.png', html_options={class: 'menu-index-item'} %>
+              <% end %>
             <div class="caption">
               <h3>Cameras</h3>
-              <p>...</p>
-              <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+              <p>Quản lý thông tin camera</p>
             </div>
           </div>
         </div>
         <div class="col-sm-6 col-md-4">
           <div class="thumbnail">
-            <%= image_tag src="videos.png", html_options={class: 'menu-index-item'} %>
+            <%= link_to videos_path do %>
+              <%= image_tag src = "videos.png", html_options = {class: 'menu-index-item'} %>
+            <% end %>
             <div class="caption">
               <h3>Videos</h3>
-              <p>...</p>
-              <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+              <p>Quản lý, trích xuất thông tin videos</p>
             </div>
           </div>
         </div>
@@ -39,31 +39,34 @@
       <div class="row">
           <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
-              <%= image_tag src='users.png', html_options={class: 'menu-index-item'} %>
+              <%= link_to root_path do %>
+                <%= image_tag src = 'users.png', html_options = {class: 'menu-index-item'} %>
+              <% end %>
               <div class="caption">
-                <h3>User</h3>
-                <p>...</p>
-                <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                <h3>Người dùng</h3>
+                <p>Quán lý thông tin người dùng hoặc thông tin cá nhân</p>
               </div>
             </div>
           </div>
           <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
-              <%= image_tag src="recognize.jpeg", html_options={class: 'menu-index-item'} %>
+              <%= link_to root_path do %>
+                <%= image_tag src = "recognize.jpeg", html_options = {class: 'menu-index-item'} %>
+              <% end %>
               <div class="caption">
-                <h3>Recognize Video</h3>
-                <p>...</p>
-                <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                <h3>Nhận dạng video</h3>
+                <p>Nhận dạng video được tải lên</p>
               </div>
             </div>
           </div>
           <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
-              <%= image_tag src="settup.png", html_options={class: 'menu-index-item'} %>
+              <%= link_to root_path do %>
+                <%= image_tag src = "settup.png", html_options = {class: 'menu-index-item'} %>
+              <% end %>
               <div class="caption">
-                <h3>Settup</h3>
-                <p>...</p>
-                <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                <h3>Cài đặt</h3>
+                <p>Quản lý hệ thống dành cho admin</p>
               </div>
             </div>
           </div>
@@ -71,7 +74,7 @@
     <% else %>
       <div class="row">
         <div class="col-md-offset-4 col-md-4">
-          <%= link_to "Sign in", new_user_session_path, html_options={class: "btn btn-lg btn-primary btn-block"}%>
+          <%= link_to "Đăng Nhập", new_user_session_path, html_options={class: "btn btn-lg btn-primary btn-block"} %>
         </div>
       </div>
     <% end %>

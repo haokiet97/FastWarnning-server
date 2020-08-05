@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :videos
   end
 
+  resources :locations
   resources :photos
   resources :videos
 

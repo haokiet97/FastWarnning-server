@@ -1,0 +1,10 @@
+<div class="row">
+  <ul class="list-unstyled video-list-thumbs row">
+    <%= render cameras %>
+  </ul>
+</div>
+<hr>
+<div class="row" id="camera_paginate">
+<p><%= page_entries_info cameras, entry_name: "camera"%></p>
+  <%= paginate cameras, theme: "twitter-bootstrap-3", remote: true %>
+</div>

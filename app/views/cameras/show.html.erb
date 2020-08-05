@@ -1,25 +1,80 @@
 <div class="row">
-  <p id="notice"><%= notice %></p>
-  <ul>
-    <li><%= @camera.title %></li>
-    <li><%= @camera.info %></li>
-    <p><strong><%= @camera.token %></strong></p>
-  </ul>
-  <%= link_to 'Edit', edit_camera_path(@camera) %> |
-  <%= link_to 'Back', cameras_path %>
+  <div class="col-md-offset-4"><h2>Thông tin chi tiểt camera</h2></div>
+  <hr>
 </div>
 <div class="row">
-  <div class="col-md-offset-4"><h3>List Videos</h3></div>
+  <div class="col-md-8 col-md-offset-2">
+    <%= render @camera %>
+    <div class="col-md-4">
+      <div class="list-group">
+        <div class="list-group-item">
+          <h3 class="list-group-item-heading">Tiêu đề</h3>
+          <p class="list-group-item-text"><%= @camera.title %></p>
+        </div>
+        <div class="list-group-item">
+          <h3 class="list-group-item-heading">Mô tả</h3>
+          <p class="list-group-item-text"><%= @camera.info %></p>
+        </div>
+        <div class="list-group-item">
+          <h3 class="list-group-item-heading">Mã truy cập(Token)</h3>
+          <p class="list-group-item-text"><%= @camera.token %></p>
+        </div>
+      </div>
+      <div class="row">
+        <%= link_to 'Cập Nhật', edit_camera_path(@camera), html_options={class:"btn btn-primary"} %> |
+        <%= link_to 'Danh sách cameras', cameras_path, html_options={class:"btn btn-default"} %>
+      </div>
+    </div>
+    <div class="col-md-4">
+        <%= render @camera.location if @camera.location %>
+    </div>
+
+  </div>
 </div>
-<br>
-<div class="row" id="videos">
-  <%= render partial: "videos/videos", locals: { videos: @videos, camera: @camera } %>
-</div>
-<br>
 <div class="row">
-  <div class="col-md-offset-4"><h3>List Photos</h3></div>
+  <div class="col-md-offset-4"><h3>Danh sách video</h3></div>
 </div>
-<br>
-<div class="row" id="photos">
-  <%= render partial: "photos/photos", locals: { photos: @photos, camera: @camera } %>
+<%= search_form_for @q, url: camera_videos_path(@camera),remote: true do |f| %>
+  <div class="row">
+    <div class="col-md-offset-8 col-md-3">
+      <div class="input-daterange input-group" id="datepicker">
+        <span class="input-group-addon">from</span>
+        <%= f.text_field :created_at_gteq, html_options={class: "input-sm form-control"}%>
+        <span class="input-group-addon">to</span>
+        <%= f.text_field :created_at_lteq,  html_options={class: "input-sm form-control"} %>
+      </div>
+    </div>
+    <%= f.submit "Search", html_options={class: " btn input-sm"} %>
+  </div>
+<% end %>
+<hr>
+<div class="row">
+  <div class="col-md-3 history-group">
+    <div class="col-md-10">
+      <div class="list-group">
+        <div class="list-group-item history-button">
+          <h3 class="list-group-item-heading" data-time-values="today">Hôm nay</h3>
+          <span class="list-group-item-text">Xem lại các video trong ngày hôm nay</span>
+        </div>
+        <div class="list-group-item history-button">
+          <h3 class="list-group-item-heading" data-time-values="yesterday">Hôm qua</h3>
+          <span class="list-group-item-text">Xem lại các video trong ngày hôm qua</span>
+        </div>
+        <div class="list-group-item history-button">
+          <h3 class="list-group-item-heading" data-time-values="this-week">Tuần này</h3>
+          <span class="list-group-item-text">Xem lại các video trong tuần này</span>
+        </div>
+        <div class="list-group-item history-button">
+          <h3 class="list-group-item-heading" data-time-values="this-month">Tháng này</h3>
+          <span class="list-group-item-text">Xem lại các vo trong tháng này</span>
+        </div>
+      </div>
+    </div>
+  </div>
+ <div class="col-md-8">
+   <div class="row" id="videos">
+     <%= render partial: "videos/videos", locals: { videos: @videos, camera: @camera } %>
+   </div>
+  </div>
 </div>
+

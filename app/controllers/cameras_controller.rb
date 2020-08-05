@@ -12,6 +12,13 @@ class CamerasController < ApplicationController
   # GET /cameras/1
   # GET /cameras/1.json
   def show
+    unless @camera.user == current_user
+      flash[:danger] = "You don't have permissions!"
+      redirect_to cameras_path
+    else
+      @q = @camera.videos.ransack params[:q]
+      @videos = @q.result.latest.page(params[:page]).per 6
+    end
   end
 
   # GET /cameras/new
