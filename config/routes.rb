@@ -6,7 +6,10 @@ Rails.application.routes.draw do
     resources :videos
   end
 
-  resources :locations
+  resources :locations do
+    resources :cameras, only: %i(index)
+    resources :cameras, only: %i(new)
+  end
   resources :photos
   resources :videos
 

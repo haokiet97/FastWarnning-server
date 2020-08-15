@@ -1,20 +1,27 @@
 class LocationsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_location, only: [:show, :edit, :update, :destroy]
 
   # GET /locations
   # GET /locations.json
   def index
-    @locations = Location.all
+    @locations = current_user.locations.latest.page(params[:page]).per 6
   end
 
   # GET /locations/1
   # GET /locations/1.json
   def show
+    unless true_location?
+      flash[:danger] = "You don't have permissions!"
+      redirect_to locations_path
+    end
+    @q = @location.cameras.ransack params[:q]
+    @cameras = @q.result.latest.page(params[:page]).per 6
   end
 
   # GET /locations/new
   def new
-    @location = Location.new
+    @location = current_user.locations.build
   end
 
   # GET /locations/1/edit
@@ -24,7 +31,7 @@ class LocationsController < ApplicationController
   # POST /locations
   # POST /locations.json
   def create
-    @location = Location.new(location_params)
+    @location = current_user.locations.create(location_params)
 
     respond_to do |format|
       if @location.save
@@ -66,6 +73,11 @@ class LocationsController < ApplicationController
     def set_location
       @location = Location.find(params[:id])
     end
+
+  def true_location?
+    return true if @location and @location.user == current_user
+    false
+  end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def location_params

@@ -1,16 +1,11 @@
-<h1>Locations</h1>
-
-<table class="responsive nowrap table table-hover" id="dttb-locations" data-sort="true" data-source="<%= url_for(format: :json)%>">
-  <thead>
-    <tr>
-      <th data-data="locate">Locate</th>
-      <th data-data="description">Description</th>
-      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
-    </tr>
-  </thead>
-
-</table>
-
-<br>
-
-<%= link_to 'New Location', new_location_path %>
+<div class="row">
+  <div class="col-md-offset-4"><h3>Danh sách địa điểm quản lý</h3></div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-md-offset-1" id="locations">
+    <%= render partial: "locations/locations", locals: {locations: @locations} %>
+  </div>
+</div>
+<hr>
+<%= link_to 'Thêm Mới', new_location_path, class: "btn btn-primary", remote: true %>

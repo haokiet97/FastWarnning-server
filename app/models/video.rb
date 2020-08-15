@@ -3,6 +3,8 @@ class Video < ApplicationRecord
 
   has_one_base64_attached :data
   # has_one_attached :data
+  VIOLENT_STATUS = {violent: "violent", nonviolent: "nonviolent"}.freeze
+  enum action_type: VIOLENT_STATUS
 
   validates :title, presence: true, length: { maximum: 250 }
   validates :description, length: { maximum: 500 }

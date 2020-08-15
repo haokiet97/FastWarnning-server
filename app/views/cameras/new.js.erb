@@ -1,0 +1,3 @@
+$('#popup-form .modal-body').html('<%= j render partial: "cameras/form", locals: {camera: @camera} %>');
+$('#popup-form .modal-title').text("Thêm camera mới");
+$('#popup-form').modal();

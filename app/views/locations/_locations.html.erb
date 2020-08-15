@@ -1,0 +1,11 @@
+<div class="row">
+  <%= render locations %>
+</div>
+<div class="row" id="location-paginate">
+  <p><%= page_entries_info locations, entry_name: "location" %></p>
+  <% if true %>
+    <%= paginate locations, theme: "twitter-bootstrap-3", remote: true, params: { controller: "locations", action: "index" } %>
+  <% else %>
+    <%= paginate locations, theme: "twitter-bootstrap-3", remote: true %>
+  <% end %>
+</div>

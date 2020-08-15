@@ -1,5 +1,10 @@
 class Location < ApplicationRecord
   validates :locate, presence: true
   validates :description, length: {maximum: 500}
-  has_many :cameras
+
+  belongs_to :user
+  has_many :cameras, dependent: :destroy
+
+  scope :latest, -> { order created_at: :desc }
+
 end

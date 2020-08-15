@@ -1,7 +1,9 @@
 <center><h2>Danh sách cameras</h2></center>
 <hr>
-<div id="cameras">
-<%= render partial: "cameras", locals: {cameras: @cameras} %>
+<div class="row" id="cameras">
+  <div class="col-md-offset-1 col-md-10">
+    <%= render partial: "cameras", locals: {cameras: @cameras, location: nil} %>
+  </div>
 </div>
 <hr>
-<%= link_to 'New Camera', new_camera_path %>
+<%= link_to 'Thêm mới', new_camera_path, html_options={class: "btn btn-primary", remote: true} %>

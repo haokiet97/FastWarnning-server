@@ -1,20 +1,54 @@
-<h1>Videos</h1>
-
-<%= search_form_for @q, remote: true do |f| %>
+<div class="row">
+  <div class="col-md-offset-4"><h3>Danh sách video</h3></div>
+</div>
+<%= search_form_for @q,remote: true do |f| %>
   <div class="row">
-    <div class="col-md-offset-8 col-md-3">
+    <div class="col-md-offset-6 col-md-4">
       <div class="input-daterange input-group" id="datepicker">
-        <span class="input-group-addon">from</span>
+        <span class="input-group-addon">Loại hành động</span>
+        <%= f.select :action_type_eq, Video::VIOLENT_STATUS, {prompt: "T cả"}, html_options = {class: "input-sm form-control"} %>
+        <span class="input-group-addon">từ</span>
         <%= f.text_field :created_at_gteq, html_options={class: "input-sm form-control"}%>
-        <span class="input-group-addon">to</span>
+        <span class="input-group-addon">đến</span>
         <%= f.text_field :created_at_lteq,  html_options={class: "input-sm form-control"} %>
       </div>
     </div>
-    <%= f.submit "Search", html_options={class: " btn input-sm"} %>
+    <%= f.submit "Tìm kiếm", html_options={class: " btn input-sm"} %>
   </div>
 <% end %>
 <hr>
-<div id="videos">
-  <%= render partial: "videos", locals: { videos:@videos, camera: @camera } %>
+<div class="row">
+  <div class="col-md-3 history-group">
+    <div class="col-md-10">
+      <div class="list-group">
+        <div class="list-group-item history-button">
+          <h3 class="list-group-item-heading" data-time-values="today">Hôm nay</h3>
+          <span class="list-group-item-text">Xem lại các video trong ngày hôm nay</span>
+        </div>
+        <div class="list-group-item history-button">
+          <h3 class="list-group-item-heading" data-time-values="yesterday">Hôm qua</h3>
+          <span class="list-group-item-text">Xem lại các video trong ngày hôm qua</span>
+        </div>
+        <div class="list-group-item history-button">
+          <h3 class="list-group-item-heading" data-time-values="this-week">7 ngày gần nhất</h3>
+          <span class="list-group-item-text">Xem lại các video trong 7 ngày gần nhất</span>
+        </div>
+        <div class="list-group-item history-button">
+          <h3 class="list-group-item-heading" data-time-values="this-month">Tháng này</h3>
+          <span class="list-group-item-text">Xem lại các video trong tháng này</span>
+        </div>
+        <div class="list-group-item history-button">
+          <h3 class="list-group-item-heading" data-time-values="all">Tất cả</h3>
+          <span class="list-group-item-text">Xem lại các video</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="row" id="videos">
+      <%= render partial: "videos/videos", locals: { videos: @videos, camera: @camera } %>
+    </div>
+  </div>
 </div>
-<%= link_to 'New Video', new_video_path, class: "btn btn-primary" %>
+<hr>
+<%= link_to 'Thêm Mới', new_video_path, class: "btn btn-primary" %>

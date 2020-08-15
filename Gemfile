@@ -6,7 +6,7 @@ ruby "2.6.4"
 gem "rails", "~> 5.2.3"
 gem "sqlite3"
 gem "puma", "~> 3.12"
-gem "sass-rails", "~> 5.0"
+gem "sass-rails", "~> 5.0.4"
 gem "uglifier", ">= 1.3.0"
 # gem "mini_racer", platforms: :ruby
 
@@ -41,6 +41,8 @@ gem "ransack", github: "activerecord-hackery/ransack"
 gem "momentjs-rails"
 gem "bootstrap3-datetimepicker-rails"
 gem "bootsnap", ">= 1.1.0", require: false
+gem "font-awesome-sass", "~> 5.13"
+gem "rails_admin", "~> 2.0"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]

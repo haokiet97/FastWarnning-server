@@ -10,9 +10,23 @@
       </ul>
     </div>
   <% end %>
-  <%= form.text_field :title, html_options = {"placeholder": "Title"}%>
-  <%= form.text_field :info, html_options = {"placeholder": "Info"}%>
+  <div class="form-group">
+    <%= form.label "Tiêu đề" %>
+    <%= form.text_field :title, html_options = { "placeholder": "Tiêu đề", class: "form-control" }%>
+  </div>
+  <div class="form-group">
+    <%= form.label "Mô tả bổ sung" %>
+    <%= form.text_area :info, html_options = {"placeholder": "Mô tả bổ sung", class: "form-control"}%>
+  </div>
+  <div class="form-group">
+    <%= form.label "Địa điểm" %>
+    <% if @location %>
+      <%= form.collection_select :location_id, current_user.locations, :id, :locate, {selected: @location.id, prompt: "Hãy chọn một địa điểm!"}, html_options = {class: "form-control"} %>
+    <% else %>
+      <%= form.collection_select :location_id, current_user.locations, :id, :locate, {prompt: "Hãy chọn một địa điểm!"}, html_options = {class: "form-control"} %>
+    <% end %>
+      </div>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Tạo", html_options={class: "btn btn-primary"} %>
   </div>
 <% end %>

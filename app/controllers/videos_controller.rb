@@ -15,7 +15,7 @@ class VideosController < ApplicationController
     else
       unless @camera.user == current_user
         flash[:danger] = "You don't have permissions!"
-        redirect_to cameras_path
+        redirect_to videos_path
       else
         @q = @camera.videos.ransack params[:q]
         @videos = @q.result.latest.page(params[:page]).per 6
